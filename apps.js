@@ -1,26 +1,28 @@
 const inquirer = require('inquirer');
-const fs = require('fs');
-const path = require('path');
-
-// Sent to output folder
-const outputPath = path.resolve(__dirname, 'output', 'team.html');
-
-// Classes
 const Manager = require('./lib/manager');
 const Engineer = require('./lib/engineer');
 const Intern = require('./lib/intern');
-const mainHTML = require('./templates/mainHTML');
+// const mainHTML = require('./templates/mainHTML');
+
+
+const path = require('path');
+
+// Sent to output folder
+const OUTPUT_DIR = path.resolve(__dirname, 'output', 'team.html');
+
+// Classes
+
 
 // Cards
-const managerCard = require('./templates/managerhtml');
-const internCard = require('./templates/internhtml');
-const engineerCard = require('./templates/engineerhtml');
+// const managerCard = require('./templates/manager.html');
+// const internCard = require('./templates/intern.html');
+// const engineerCard = require('./templates/engineer.html');
 
 const fullTeam = [];
 
 // Initial Prompt
 const mainApp = () => {
-  console.log('Please build your team');
+  // console.log('Please build your team');
   inquirer
     .prompt([
       {
@@ -220,7 +222,7 @@ const mainApp = () => {
   function buildTeam() {
     // write team members to a html file
     const finalTeam = fullTeam.join('');
-    fs.writeFileSync(outputPath, mainHTML(finalTeam), 'utf-8');
+    fs.writeFileSync(OUTPUT_DIR, mainHTML(finalTeam), 'utf-8');
   }
 };
 
